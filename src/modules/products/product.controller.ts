@@ -89,10 +89,29 @@ const updateProduct = async (req: Request, res: Response) => {
     });
   }
 };
+//  delete a product form database
+const deleteProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    await ProductServices.deleteProduct(productId);
+    res.json({
+      success: true,
+      message: "Product deleted successfully!",
+      data: null,
+    });
+  } catch (error) {
+    res.json({
+      success: true,
+      message: "Route not found",
+      data: error,
+    });
+  }
+};
 
 export const ProductControllers = {
   createProducts,
   getAllProduct,
   getSingleProduct,
   updateProduct,
+  deleteProduct,
 };

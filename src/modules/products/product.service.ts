@@ -34,10 +34,16 @@ const updateProduct = async (id: string, payload: Partial<TProduct>) => {
   });
   return result;
 };
+// product service for delete a product from database
+const deleteProduct = async (id: string) => {
+  const result = await Products.findByIdAndDelete(id);
+  return result;
+};
 
 export const ProductServices = {
   createProduct,
   getAllProducts,
   getSingleProduct,
   updateProduct,
+  deleteProduct,
 };
