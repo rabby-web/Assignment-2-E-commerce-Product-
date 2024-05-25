@@ -7,7 +7,7 @@ const createOrder = async (payload: TOrders) => {
   return result;
 };
 
-// Order service for get all orders.
+//  get all orders.
 const getAllOrders = async (email: string) => {
   if (!email) {
     const result = await Orders.find();
