@@ -1,6 +1,6 @@
 # Instructions
 
-There is some instruction for how you can run this project on you local computer. follow step by step.
+### There is some instruction for how you can run this project on you local computer. follow step by step.
 
 ### Clone this project
 
@@ -10,7 +10,7 @@ Fist you need to clone this project repository. Open your command prompt and run
 git clone https://github.com/rabby4/product-management.git
 ```
 
-After open this project with VS Code you will see all the file. But you can't run this immediately. You need to install necessary packages. To install all the packages, open CMD/git bash in vs code to `ctrl + j` or you can open external CMD/git bash. Then you can simply run this below command.
+After open this project with VS Code you will see all the file. You need to install necessary packages. To install all the packages, open CMD/git bash in vs code to `ctrl + j` or you can open external CMD/git bash. Then you can simply run this below command.
 
 ```
 npm i
