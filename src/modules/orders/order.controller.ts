@@ -8,38 +8,45 @@ import { OrderService } from "./order.service";
 const createOrder = async (req: Request, res: Response) => {
   try {
     const orderData = req.body;
-    const orderProductId = new mongoose.Types.ObjectId(orderData.productId);
-    const product = await Products.findOne({ _id: orderProductId });
+    // const orderProductId = new mongoose.Types.ObjectId(orderData.productId);
+    // const product = await Products.findOne({ _id: orderProductId });
+    const validData = orderValidationSchema.parse(orderData);
+    const result = await OrderService.createOrder(validData);
+    res.json({
+      success: true,
+      message: "Order created successfully!",
+      data: result,
+    });
 
-    if (product) {
-      if (product.inventory.quantity >= orderData.quantity) {
-        const updateQuantity = product.inventory.quantity - orderData.quantity;
-        await Products.updateOne(
-          { _id: product._id },
-          { $set: { "inventory.quantity": updateQuantity } }
-        );
+    // if (product) {
+    //   if (product.inventory.quantity >= orderData.quantity) {
+    //     const updateQuantity = product.inventory.quantity - orderData.quantity;
+    //     await Products.updateOne(
+    //       { _id: product._id },
+    //       { $set: { "inventory.quantity": updateQuantity } }
+    //     );
 
-        if (updateQuantity === 0) {
-          await Products.updateOne(
-            { _id: product._id },
-            { $set: { "inventory.inStock": false } }
-          );
-        }
+    //     if (updateQuantity === 0) {
+    //       await Products.updateOne(
+    //         { _id: product._id },
+    //         { $set: { "inventory.inStock": false } }
+    //       );
+    //     }
 
-        const validData = orderValidationSchema.parse(orderData);
-        const result = await OrderService.createOrder(validData);
-        res.json({
-          success: true,
-          message: "Order created successfully!",
-          data: result,
-        });
-      } else {
-        res.json({
-          success: false,
-          message: "Insufficient quantity available in inventory",
-        });
-      }
-    }
+    //     const validData = orderValidationSchema.parse(orderData);
+    //     const result = await OrderService.createOrder(validData);
+    //     res.json({
+    //       success: true,
+    //       message: "Order created successfully!",
+    //       data: result,
+    //     });
+    //   } else {
+    //     res.json({
+    //       success: false,
+    //       message: "Insufficient quantity available in inventory",
+    //     });
+    //   }
+    // }
   } catch (error: any) {
     res.json({
       success: false,
