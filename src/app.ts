@@ -5,6 +5,7 @@ const app = express();
 // parsers
 app.use(express.json());
 
+// route path
 app.use("/api/products", ProductRoutes);
 app.use("/api/orders", OrderRoute);
 
