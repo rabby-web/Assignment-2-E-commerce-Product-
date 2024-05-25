@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
-// import { OrderService } from "./order.service";
-// import orderValidationSchema from "./order.validation";
 import mongoose from "mongoose";
 import { Products } from "../products/product.model";
 import orderValidationSchema from "./order.validation";
 import { OrderService } from "./order.service";
 
-// Order controller for create a order
+//  create a order
 const createOrder = async (req: Request, res: Response) => {
   try {
     const orderData = req.body;
@@ -42,7 +40,6 @@ const createOrder = async (req: Request, res: Response) => {
         });
       }
     }
-    /* eslint-disable @typescript-eslint/no-explicit-any */
   } catch (error: any) {
     res.json({
       success: false,
@@ -52,7 +49,7 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
-// Order controller for get all Orders
+// get all Orders
 const getAllOrders = async (req: Request, res: Response) => {
   try {
     const email = req.query.email as string;
